@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit= no">
+    <title>eCommerce</title>
+
+    <!-- to load css-->
+    {% include 'base/css.html' %}
+
+  </head>
+  <body id="body">
+    {% include 'base/navbar.html' with brand_name=''%}
+    <main>
+      <div class="container mt-6">
+        {% block content %}{% endblock %}
+      </div>
+
+    </main>
+    <footer>
+      {% include 'base/footer.html' %}
+    </footer>
+
+    <!-- to load js-->
+    {% include 'base/js.html' %}
+
+  </body>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {{object.title}}<br>
+    {{object.description}}<br>
+    {{object.price}}<br>
+    {% if object.image %}
+      <img class="img-fluid" src="{{object.image.url}}" alt="Product image">
+    {% endif %}
+
+{% endblock %}
