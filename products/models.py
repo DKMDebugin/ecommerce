@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 import os
 from django.db.models.signals import pre_save, post_save
 import random
@@ -30,6 +31,15 @@ class ProductQuerySet(models.query.QuerySet):
     def featured(self):
         return self.filter(featured=True, )
 
+    def search(self, query):
+        lookups =   (
+                        Q(title__icontains=query) |
+                        Q(description__icontains=query) |
+                        Q(price__icontains=query) |
+                        Q(tag__title__icontains=query)
+                    )
+        return self.filter(lookups).distinct()
+
 class ProductManager(models.Manager):
     '''Extend /Override Product Custom Model Manager (objects)'''
 
@@ -41,16 +51,20 @@ class ProductManager(models.Manager):
         """Override the all() Model Manager method"""
         return self.get_queryset().active()
 
-    def features(self):
+    def featured(self):
         """Add method method to Model Manager """
         return self.get_queryset().featured()
 
     def get_by_id(self, id):
-        """Add method method to Model Manager """
+        """Add get_by_id() to Model Manager """
         qs = self.get_queryset().filter(id=id, featured=False) # Product.objects is replaced by self.get_queryset()
         if qs.count() == 1:
             return qs.first()
         return None
+
+    def search(self, query):
+        """Add search method to model manager"""
+        return self.get_queryset().active().search(query)
 
 
 class Product(models.Model):

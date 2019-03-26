@@ -23,8 +23,10 @@ from django.conf.urls import url
 from .views import Home, About, contact, login_page, register_page, logout_view
 
 
-
 urlpatterns = [
+
+    path('tags/', include(('tags.urls', 'tags'), 'tags')),
+    path('search/', include(('search.urls', 'search'), 'search')),
     path('products/', include(('products.urls', 'products'), 'products')),
     path('contact/', contact, name='contact'),
     path('about/', About.as_view(), name='about'),

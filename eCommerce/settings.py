@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # user apps
     'products',
+    'search',
+    'tags',
 
     # 3rd class app
     'bootstrap4',
