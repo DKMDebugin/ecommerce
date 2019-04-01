@@ -20,18 +20,19 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import url
 
-from .views import Home, About, contact, login_page, register_page, logout_view
+from .views import Home, home, About, contact, login_page, register_page, logout_view
 
 
 urlpatterns = [
-
-    path('tags/', include(('tags.urls', 'tags'), 'tags')),
+    path('cart/', include(('carts.urls', 'cart'), 'cart')),
+    # path('tags/', include(('tags.urls', 'tags'), 'tags')),
     path('search/', include(('search.urls', 'search'), 'search')),
     path('products/', include(('products.urls', 'products'), 'products')),
     path('contact/', contact, name='contact'),
     path('about/', About.as_view(), name='about'),
     path('bootstrap/', TemplateView.as_view(template_name='example/bootstrap.html')),
-    path('', Home.as_view(), name='home'),
+    path('', home, name='home'),
+    # path('', Home.as_view(), name='home'),
     path('register/', register_page, name='register'),
     path('logout/', logout_view, name='logout'),
     path('login/', login_page, name='login'),

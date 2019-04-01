@@ -61,5 +61,14 @@ def contact(request):
 class About(TemplateView):
     template_name = 'about.html'
 
+
+def home(request):
+    # print(request.session.get("first_name", 'Unknown')) # getter
+    return render(request, 'home.html', {})
+
 class Home(TemplateView):
     template_name = 'home.html'
+
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        print(request.session.get('first_name'))
