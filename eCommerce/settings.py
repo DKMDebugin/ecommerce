@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # user apps
+    'accounts',
+    'addresses',
+    'billing',
     'carts',
+    'orders',
     'products',
     'search',
     'tags',
@@ -58,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGOUT_REDIRECT_URL = '/login/'
 ROOT_URLCONF = 'eCommerce.urls'
 
 TEMPLATES = [

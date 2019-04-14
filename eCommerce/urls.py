@@ -13,29 +13,41 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from django.conf.urls.static import static
+from django.conf import settings
+
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.urls import path, include
-from django.conf.urls.static import static
-from django.conf import settings
+from django.contrib.auth.views import LogoutView
+
 from django.conf.urls import url
 
-from .views import Home, home, About, contact, login_page, register_page, logout_view
+from accounts.views import login_page, register_page, guest_register_view
+from addresses.views import checkout_address_create_view, checkout_address_reuse_view
+from .views import Home, home, About, contact
+
 
 
 urlpatterns = [
+
     path('cart/', include(('carts.urls', 'cart'), 'cart')),
-    # path('tags/', include(('tags.urls', 'tags'), 'tags')),
-    path('search/', include(('search.urls', 'search'), 'search')),
     path('products/', include(('products.urls', 'products'), 'products')),
-    path('contact/', contact, name='contact'),
-    path('about/', About.as_view(), name='about'),
-    path('bootstrap/', TemplateView.as_view(template_name='example/bootstrap.html')),
+    path('search/', include(('search.urls', 'search'), 'search')),
+
     path('', home, name='home'),
     # path('', Home.as_view(), name='home'),
+    path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
+    path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
+    path('contact/', contact, name='contact'),
+    path('bootstrap/', TemplateView.as_view(template_name='example/bootstrap.html')),
+    path('about/', About.as_view(), name='about'),
+
     path('register/', register_page, name='register'),
-    path('logout/', logout_view, name='logout'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('login/', login_page, name='login'),
+    path('register/guest/', guest_register_view, name='guest_register'),
     path('admin/', admin.site.urls),
 
 ]
