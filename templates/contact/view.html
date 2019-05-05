@@ -4,13 +4,18 @@
 
 
 {% block content %}
-    <h1>Contact</h1>
-    <form method="post">
-      {% csrf_token %}
-        {% bootstrap_form form %}
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <h1>Contact</h1>
+      <form class="contact-form" method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+          {% bootstrap_form form %}
 
-        {% buttons %}
-          <button type="submit" class="btn btn-secondary">Submit</button>
-        {% endbuttons %}
-    </form>
+          {% buttons %}
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          {% endbuttons %}
+      </form>
+    </div>
+  </div>
+
 {% endblock %}

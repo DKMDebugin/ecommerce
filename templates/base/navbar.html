@@ -52,7 +52,7 @@
            <a class="nav-link {% if request.path == contact_url %} active {% endif %}"  href="{{contact_url}}" id='nav-link-4'><i class="fa fa-address-book"></i></a>
          </li>
          <li class="nav-item">
-           <a class="nav-link {% if request.path == cart_url %} active {% endif %}" href="{{cart_url}}" id='nav-link-2'><i class="fa fa-shopping-cart"><sup> {{ request.session.cart_items }} </sup></i></a>
+           <a class="nav-link {% if request.path == cart_url %} active {% endif %}" href="{{cart_url}}" id='nav-link-2'><i class="fa fa-shopping-cart"><sup> <span class="navbar-cart-count">{{ request.session.cart_items }} </span></sup></i></a>
          </li>
          <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

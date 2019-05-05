@@ -1,5 +1,6 @@
 # Project view module
 from django.views.generic import TemplateView
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import ContactForm
@@ -9,7 +10,16 @@ def contact(request):
     form = ContactForm(request.POST or None)
 
     if form.is_valid():
-        print(form.clean_data)
+        # print(form.clean_data)
+        if request.is_ajax():
+            json_data = {
+                'message': 'Thank you for your submisssion',
+            }
+            return JsonResponse(json_data)
+    if form.errors:
+        errors = form.errors.as_json()
+        if request.is_ajax():
+            return HttpResponse(errors, status=400, content_type='application/json')
 
     template = 'contact/view.html'
     context = {
