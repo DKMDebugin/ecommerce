@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'bootstrap4',
 ]
 
+AUTH_USER_MODEL = 'accounts.User' # changes built-in user model to the custom one i created
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

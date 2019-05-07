@@ -10,7 +10,7 @@ def contact(request):
     form = ContactForm(request.POST or None)
 
     if form.is_valid():
-        # print(form.clean_data)
+        print(form.cleaned_data['email'])
         if request.is_ajax():
             json_data = {
                 'message': 'Thank you for your submisssion',
