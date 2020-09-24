@@ -1,3 +1,4 @@
 ec_env/
 __pycache__/
-db.*
+db*
+.env
