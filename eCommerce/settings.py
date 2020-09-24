@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # user apps
     'accounts',
     'addresses',
+    'analytics',
     'billing',
     'carts',
     'orders',
